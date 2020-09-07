@@ -33,6 +33,6 @@ public class RenameMeResource {
     public String getRenameMeCount() {
         long count = FACADE.getRenameMeCount();
         //System.out.println("--------------->"+count);
-        return "{\"count er\":"+count+"}";  //Done manually so no need for a DTO
+        return "COUNT" + "{\"count\":"+count+"}";  //Done manually so no need for a DTO
     }
 }
