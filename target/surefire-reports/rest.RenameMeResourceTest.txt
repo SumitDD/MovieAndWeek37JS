@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: rest.RenameMeResourceTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.938 s - in rest.RenameMeResourceTest
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.393 s <<< FAILURE! - in rest.RenameMeResourceTest
+testCount  Time elapsed: 0.126 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+JSON path count doesn't match.
+Expected: <2>
+  Actual: null
+
+	at rest.RenameMeResourceTest.testCount(RenameMeResourceTest.java:102)
+
