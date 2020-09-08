@@ -1,8 +1,13 @@
-rest\RenameMeResource.class
 entities\RenameMe.class
-rest\TestResource.class
-facades\FacadeExample.class
-rest\ApplicationConfig.class
+entities\Main.class
 entities\ghy636765\RenameMe_.class
+rest\allEndPoints.class
+rest\TestResource.class
+facades\MovieFacade.class
+rest\ApplicationConfig.class
+entities\ghy636765\Movie_.class
+entities\Movie.class
 entities\xx345y657\RenameMe_.class
 utils\EMF_Creator.class
+entities\xx345y657\Movie_.class
+rest\MovieDTO.class

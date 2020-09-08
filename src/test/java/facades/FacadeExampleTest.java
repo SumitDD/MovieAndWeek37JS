@@ -1,5 +1,6 @@
 package facades;
 
+import entities.Movie;
 import utils.EMF_Creator;
 import entities.RenameMe;
 import javax.persistence.EntityManager;
@@ -16,15 +17,15 @@ import org.junit.jupiter.api.Test;
 public class FacadeExampleTest {
 
     private static EntityManagerFactory emf;
-    private static FacadeExample facade;
+    private static MovieFacade facade;
 
     public FacadeExampleTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
-       emf = EMF_Creator.createEntityManagerFactoryForTest();
-       facade = FacadeExample.getFacadeExample(emf);
+        emf = EMF_Creator.createEntityManagerFactoryForTest();
+        facade = MovieFacade.getFacadeExample(emf);
     }
 
     @AfterAll
@@ -39,9 +40,9 @@ public class FacadeExampleTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new RenameMe("Some txt", "More text"));
-            em.persist(new RenameMe("aaa", "bbb"));
+           // em.createNamedQuery("DELETE FROM Movie m").executeUpdate();
+          //em.persist(new Movie(555, "hej", "med", "dig", 55));
+           // em.persist(new Movie(666, "dd", "www", "dddd", 20222));
 
             em.getTransaction().commit();
         } finally {
@@ -56,8 +57,18 @@ public class FacadeExampleTest {
 
     // TODO: Delete or change this method 
     @Test
-    public void testAFacadeMethod() {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+    public void testCountAllMovies() {
+        assertEquals(1, facade.countAllMovies(), "Expects two rows in the database");
     }
+
+    @Test
+    public void testAddMovie() {
+        assertEquals("Movie:Sumit id:1", facade.addMovie(12, "Sumit", "Komedie", "Dey", 1999).toString());
+    }
+    @Test
+    public void testFindMovieByName() {
+        assertEquals("[Sumit]", facade.findMovieByTitle("Sumit").toString());
+    }
+    
 
 }
