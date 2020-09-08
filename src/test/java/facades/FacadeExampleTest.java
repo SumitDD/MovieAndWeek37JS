@@ -58,17 +58,17 @@ public class FacadeExampleTest {
     // TODO: Delete or change this method 
     @Test
     public void testCountAllMovies() {
-        assertEquals(1, facade.countAllMovies(), "Expects two rows in the database");
+        assertEquals(1, facade.countAllMovies());
     }
 
     @Test
     public void testAddMovie() {
         assertEquals("Movie:Sumit id:1", facade.addMovie(12, "Sumit", "Komedie", "Dey", 1999).toString());
     }
-    @Test
-    public void testFindMovieByName() {
-        assertEquals("[Sumit]", facade.findMovieByTitle("Sumit").toString());
-    }
+//    @Test
+//    public void testFindMovieByName() {
+//        assertEquals("[Sumit]", facade.findMovieByTitle("Sumit").toString());
+//    }
     
 
 }

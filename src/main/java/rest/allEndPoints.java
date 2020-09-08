@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import entities.Movie;
 import utils.EMF_Creator;
 import facades.MovieFacade;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.GET;
@@ -26,21 +27,34 @@ public class allEndPoints {
     @Path("count")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getAllMovies() {
+    public String getCountMovies() {
         long count = (long) FACADE.countAllMovies();
         //System.out.println("--------------->"+count);
         return "{\"count\":" + count + "}";  //Done manually so no need for a DTO
     }
 
-    @Path("{title}")
+    @GET
+    @Path("/title/{title}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getMovieByName(@PathParam("title") String title) {
+        List<Movie> movieList = FACADE.getMovieByTitle(title);
+        return GSON.toJson(movieList);
+    }
+
+    @GET
+    @Path("/{year}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getMovieById(@PathParam("year") int year) {
+        Movie movie = FACADE.getMovieById(year);
+        return GSON.toJson(movie);
+    }
+
+    @Path("all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String findMovie(@PathParam("title") String title) {
-
-        MovieDTO movie = new MovieDTO((Movie) FACADE.findMovieByTitle(title));
-
-        return new Gson().toJson(movie.toString());
-
+    public String getAllMovies() {
+        List<Movie> allMovies = FACADE.getAllMovies();
+        return GSON.toJson(allMovies);
     }
 
     @Path("add")

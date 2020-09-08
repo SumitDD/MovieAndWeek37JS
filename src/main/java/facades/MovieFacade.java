@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import rest.MovieDTO;
 
@@ -51,7 +52,43 @@ public class MovieFacade {
 
     }
 
-    public Movie addMovie(long id, String title, String genre, String director, int year ) {
+    public List<Movie> getMovieByTitle(String title) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Movie.getByTitle");
+            query.setParameter("title", title);
+            List<Movie> movieList = query.getResultList();
+            return movieList;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Movie getMovieById(long id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Movie.getById");
+            query.setParameter("year", id);
+            Movie movie = (Movie) query.getSingleResult();
+            return movie;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Movie> getAllMovies() {
+
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Movie.getAll");
+            List<Movie> movies = query.getResultList();
+            return movies;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Movie addMovie(long id, String title, String genre, String director, int year) {
         Movie movie = new Movie(id, title, genre, director, year);
         EntityManager em = emf.createEntityManager();
         try {
@@ -63,21 +100,5 @@ public class MovieFacade {
             em.close();
         }
     }
-
-     public List findMovieByTitle(String title) {
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            TypedQuery<Movie> query = em.createQuery("Select m.title FROM Movie m where m.title = :title", Movie.class);
-            query.setParameter("title", title);
-            return query.getResultList();
-
-        } finally {
-            em.close();
-        }
-
-    }
-
- 
 
 }
