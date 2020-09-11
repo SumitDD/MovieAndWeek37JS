@@ -1,0 +1,80 @@
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="myClass">
+            <h1 id="myh1">Alle navne</h1>
+
+            <form onsubmit ="return addName()">
+                <input type="text" id="name">
+                <input type='submit' value='Submit' />
+            </form>
+
+            <button onclick="removeFirst()">Press to remove the first name</button>
+            <button onclick="removeLast()">Press to remove the Last name</button>
+
+            <p id="pid">
+
+
+
+            </p>
+
+
+        </div>
+
+        <script>
+
+            var names = ["Sumit", "Phillip", "Lukas", "Sebastian", "Christoffer"]
+
+            let htmlArray = names.map(function (n) {
+
+                return "<li>" + n + "</li>"
+
+
+            })
+
+            htmlArray.unshift("<ul>")
+            htmlArray.push("</ul>")
+
+            var stringArray = htmlArray.join(" ")
+
+            var x = document.getElementById("pid")
+            x.insertAdjacentHTML("afterend", stringArray)
+
+            var ul = document.querySelector('.myClass > ul')
+            ul.id = 'myList'
+
+            function addName() {
+                let nameValue = document.getElementById("name").value
+                names.push(nameValue)
+                let stringNewName = "<li>" + nameValue + "</li"
+
+                let x = document.getElementById("myList")
+                x.insertAdjacentHTML("beforeend", stringNewName)
+                event.preventDefault()
+
+            }
+
+            function removeFirst() {
+
+                // Select the unordered list
+                let list = document.getElementById("myList");
+                list.removeChild(list.firstElementChild);
+            }
+
+            function removeLast() {
+
+                let list = document.getElementById('myList');
+                list.removeChild(list.lastElementChild);
+            }
+
+
+
+
+        </script>
+    </body>
+</html>

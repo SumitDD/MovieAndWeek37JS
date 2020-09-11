@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <title>Cars</title>
+    </head>
+    <body>
+        <h1>All cars</h1>
+
+        <table class="table">
+            <thead>
+                <tr id="trid">
+                    <th scope="col">id</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Make</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody id="mybody">           
+            </tbody>
+        </table>
+
+
+        <form onsubmit ="return sortByPrice()">
+            <input type="text" id="price">
+            <input type='submit' value='Price less than' />
+        </form>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+
+            var cars = [
+                {id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000},
+                {id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900},
+                {id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000},
+                {id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799},
+                {id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799}
+            ];
+
+
+            var html = cars.map(car =>
+                "<tr><td>" + car.id + "</td>\n\
+                       <td>" + car.year + "</td>\n\
+                       <td>" + car.make + "</td>\n\
+                       <td>" + car.model + "</td>\n\
+                       <td>" + car.price + "</td>\n\
+                       <td>")
+            document.getElementById("mybody").innerHTML = html;
+
+
+            function sortCars() {
+                let price = document.getElementById("price").value;               
+                return car => car.price < price;
+
+            }
+
+            function sortByPrice() {
+                var filteredCars = cars.filter(sortCars())
+                html = filteredCars.map(car =>
+                    "<tr><td>" + car.id + "</td>\n\
+                       <td>" + car.year + "</td>\n\
+                       <td>" + car.make + "</td>\n\
+                       <td>" + car.model + "</td>\n\
+                       <td>" + car.price + "</td>\n\
+                       <td>")
+
+                document.getElementById("mybody").innerHTML = html;
+                event.preventDefault();
+
+            }
+
+        </script>
+
+
+
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
