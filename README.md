@@ -14,3 +14,11 @@
 
 This document explains how to use this code (build, test and deploy), locally with maven, and remotely with maven controlled by Travis
  - [How to use](https://docs.google.com/document/d/1K6s6Tt65bzB8bCSE_NUE8alJrLRNTKCwax3GEm4OjOE/edit?usp=sharing)
+
+
+STATUS 
+Sumit Dey cph-sd152@cphbusiness.dk
+
+Jeg har lavet de fleste opgaver men har haft lidt småproblemer med mine tests som jeg ikke kunne få til at virke.
+Jeg havde også problemer med at deploye mit projekt til mit domæne, da jeg hele tiden fik følgende fejl "tomcatManager status code:200, ReasonPhrase:
+[INFO] FAIL - Application already exists at path [/devops-starter]". Jeg prøver ihvertfald lige at få det lødt inden næste uge. 
